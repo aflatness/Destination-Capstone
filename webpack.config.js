@@ -1,6 +1,6 @@
 const path = require('path');
-const SRC_DIR = path.join(__dir, '/client/index.js');
-const OUT_DIR = path.join(__dir, '/public');
+const SRC_DIR = path.join(__dirname, '/client/index.js');
+const OUT_DIR = path.join(__dirname, '/public');
 
 module.exports = {
   entry: SRC_DIR,
@@ -8,19 +8,19 @@ module.exports = {
     filename: 'bundle.js',
     path: OUT_DIR
   },
-  modules: {
+  module: {
     rules: [
       {
         test: /(\.js|\.jsx)?/,
-        excludes: /node_modules/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
             presets: [
               '@babel/preset-react',
               '@babel/preset-env'
-            }
-          ]
+            ]
+          }
         }
       }
     ]
