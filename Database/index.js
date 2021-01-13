@@ -6,12 +6,14 @@ module.exports.db = mongoose.connect(uri);
 const locationSchema = new mongoose.Schema({
   city: String,
   state: String,
-  country: String
+  country: String,
+  desc: String,
 });
 
 const hostSchema = new mongoose.Schema({
   name: String,
   verified: Boolean,
+  photo: String,
   joinDate: String,
   desc: String,
   reviews: Number,
