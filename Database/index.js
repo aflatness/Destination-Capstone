@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/newline-after-import
 const mongoose = require('mongoose');
 const uri = 'mongodb://localhost/fec';
 
@@ -19,28 +20,28 @@ const hostSchema = new mongoose.Schema({
   reviews: Number,
   contact: {
     email: String,
-    phone: String
+    phone: String,
   },
   response: {
     rate: Number,
-    time: String
+    time: String,
   },
-  properties: [String]
+  properties: [String],
+  messages: [Object],
 });
 
 const toKnowSchema = new mongoose.Schema({
   name: String,
   rules: {
     house: [String],
-    additional: [String]
+    additional: [String],
   },
   health: {
     safety: [String],
-    acknowledge: [String]
+    acknowledge: [String],
   },
-  cancelPolicy: [String]
+  cancelPolicy: [String],
 });
-
 
 module.exports.Hosts = mongoose.model('host', hostSchema);
 module.exports.Locations = mongoose.model('location', locationSchema);

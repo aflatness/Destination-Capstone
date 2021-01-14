@@ -1,6 +1,6 @@
-//TODO: Add Jezz Bezos for seattle property
-//Figure out picture with S3
-const {db, Hosts, Locations, ToKnow} = require('./index.js');
+/* eslint-disable object-curly-newline */
+
+const { Hosts, Locations, ToKnow, db } = require('./index.js');
 
 const hosts = [
   {
@@ -16,9 +16,10 @@ const hosts = [
     },
     response: {
       rate: 100,
-      time: 'within an hour'
+      time: 'within an hour',
     },
-    properties: ['Hollywood lifeStyle of luxury! Manion for a star', 'Jabroni, it\'s the Rock cave', 'Cabin near seattle, the getaway you need!']
+    properties: ['Hollywood lifeStyle of luxury! Manion for a star', 'Jabroni, it\'s the Rock cave', 'Cabin near seattle, the getaway you need!'],
+    messages: [],
   },
   {
     name: 'Elon Musk',
@@ -33,9 +34,10 @@ const hosts = [
     },
     response: {
       rate: 98,
-      time: 'within a few hours'
+      time: 'within a few hours',
     },
-    properties: ['Model H is for house', 'Giga Mansion of West Hollywood', 'First house on Mars - Pre-book now!!!', 'Best Crash pad for Oaklands finests']
+    properties: ['Model H is for house', 'Giga Mansion of West Hollywood', 'First house on Mars - Pre-book now!!!', 'Best Crash pad for Oaklands finests'],
+    messages: [],
   },
   {
     name: 'Steve Schneider',
@@ -50,9 +52,10 @@ const hosts = [
     },
     response: {
       rate: 83,
-      time: 'within a day'
+      time: 'within a day',
     },
-    properties: ['Bay for days! The best view in the Bay']
+    properties: ['Bay for days! The best view in the Bay'],
+    messages: [],
   },
   {
     name: 'Milly Ketchum',
@@ -67,10 +70,12 @@ const hosts = [
     },
     response: {
       rate: 88,
-      time: 'within a day'
+      time: 'within a day',
     },
-    properties: ['The only apartment in Seattles Needle. Don\'t ask.', 'We go to WeHo', 'We go to WeHo too']
-  },{
+    properties: ['The only apartment in Seattles Needle. Don\'t ask.', 'We go to WeHo', 'We go to WeHo too'],
+    messages: [],
+  },
+  {
     name: 'Jon Lasley',
     verified: false,
     photo: 'https://fechostinfo.s3-us-west-1.amazonaws.com/JonLasley',
@@ -83,10 +88,12 @@ const hosts = [
     },
     response: {
       rate: 95,
-      time: 'within a few hours'
+      time: 'within a few hours',
     },
-    properties: ['Bay bay for the bay', 'Sweet cozy home, heart of Austin', 'Live like a king in this king sized apartment. Oakland\'s penthouse', 'Walk to the bars, stay away from cars. 6th Street\'s popping household']
-  },{
+    properties: ['Bay bay for the bay', 'Sweet cozy home, heart of Austin', 'Live like a king in this king sized apartment. Oakland\'s penthouse', 'Walk to the bars, stay away from cars. 6th Street\'s popping household'],
+    messages: [],
+  },
+  {
     name: 'Amanda DeVille',
     verified: true,
     photo: 'https://fechostinfo.s3-us-west-1.amazonaws.com/AmandaDeVille',
@@ -99,10 +106,12 @@ const hosts = [
     },
     response: {
       rate: 93,
-      time: 'within a day'
+      time: 'within a day',
     },
-    properties: ['Oakland\'s only skyrise mansion', 'Cute and quant cottage on outskirts of Austin ', 'Delivered Austin BBQ is still the best BBQ in Austin']
-  },{
+    properties: ['Oakland\'s only skyrise mansion', 'Cute and quant cottage on outskirts of Austin ', 'Delivered Austin BBQ is still the best BBQ in Austin'],
+    messages: [],
+  },
+  {
     name: 'Joe Docker',
     verified: true,
     photo: 'https://fechostinfo.s3-us-west-1.amazonaws.com/JoeDocker',
@@ -115,9 +124,10 @@ const hosts = [
     },
     response: {
       rate: 97,
-      time: 'within a few hours'
+      time: 'within a few hours',
     },
-    properties: ['Seattles true finest', 'Across from the needle. Best view in Seattle', 'When you\'re here, you\'re here.']
+    properties: ['Seattles true finest', 'Across from the needle. Best view in Seattle', 'When you\'re here, you\'re here.'],
+    messages: [],
   },
 ];
 
@@ -126,13 +136,13 @@ const locations = [
     city: 'Hollywood',
     state: 'California',
     country: 'United States',
-    desc: 'Hollywood is a trendy area known for its high-energy nightlife. The fabled Sunset Strip features the Chateau Marmont, a swanky celebrity hideaway, plus comedy clubs and live music venues like the legendary Whiskey a Go Go. Santa Monica Boulevard, awash in rainbow flags, is home to a number of gay bars, dance clubs and shops. Hollywood also offers some of the city’s most buzzworthy restaurants.\n\nWeHo: Located in the heart of metropolitan Los Angeles, at 1.9 square miles, West Hollywood is a robust economic and cultural center instilled with idealism and creativity. The City of West Hollywood is filled with rich history. People from all over the globe visit West Hollywood for its iconic destinations such as The Sunset Strip for its unparalleled historical connection to music, entertainment, architecture, fashion, and culture-making; for Santa Monica Boulevard’s historic LGBT destinations and entertainment establishments; and for the Design District’s shopping, galleries, and restaurants.'
+    desc: 'Hollywood is a trendy area known for its high-energy nightlife. The fabled Sunset Strip features the Chateau Marmont, a swanky celebrity hideaway, plus comedy clubs and live music venues like the legendary Whiskey a Go Go. Santa Monica Boulevard, awash in rainbow flags, is home to a number of gay bars, dance clubs and shops. Hollywood also offers some of the city’s most buzzworthy restaurants.\n\nWeHo: Located in the heart of metropolitan Los Angeles, at 1.9 square miles, West Hollywood is a robust economic and cultural center instilled with idealism and creativity. The City of West Hollywood is filled with rich history. People from all over the globe visit West Hollywood for its iconic destinations such as The Sunset Strip for its unparalleled historical connection to music, entertainment, architecture, fashion, and culture-making; for Santa Monica Boulevard’s historic LGBT destinations and entertainment establishments; and for the Design District’s shopping, galleries, and restaurants.',
   },
   {
     city: 'Austin',
     state: 'Texas',
     country: 'United States',
-    desc: 'As Austin grows into a world-class city, there\'s concern in some quarters that it\'s losing its weirdness. But rest assured that Austin retains it\'s many attractive features.\n\nOverall, what attracts many people to Austin are likely the same things that caught your attention: the high quality of life, low cost of living, favorable employment prospects, relatively mild climate, and active music and arts scene.\n\nNeighboorhoods: Downtown is the heart of the city, where it\'s non-stop activity day and night.\n\nCultural attractions fill visitors\' days, and nightlife, shows and concerts keep them busy all night. \n\nThe main district contains within its borders smaller neighborhoods for shopping, nightlife, eateries and galleries.'
+    desc: 'As Austin grows into a world-class city, there\'s concern in some quarters that it\'s losing its weirdness. But rest assured that Austin retains it\'s many attractive features.\n\nOverall, what attracts many people to Austin are likely the same things that caught your attention: the high quality of life, low cost of living, favorable employment prospects, relatively mild climate, and active music and arts scene.\n\nNeighboorhoods: Downtown is the heart of the city, where it\'s non-stop activity day and night.\n\nCultural attractions fill visitors\' days, and nightlife, shows and concerts keep them busy all night. \n\nThe main district contains within its borders smaller neighborhoods for shopping, nightlife, eateries and galleries.',
   },
   {
     city: 'Oakland',
@@ -144,8 +154,8 @@ const locations = [
     city: 'Seattle',
     state: 'Washington',
     country: 'United States',
-    desc: 'Seattle is a city of distinct neighbourhoods and urban districts that, though close to one another, change from one street to the next. Some neighbourhoods, notably those near the Duwamish Waterway to southwest of the city centre, are industrial in character, marked by rail yards, wharves, cranes, and low-income housing projects. Others, largely outside the city centre, are showcases for the opulence wrought by Seattle’s booming high-technology sector.\n\nThe downtown district is Seattle’s commercial heart. Of particular interest to visitors is the Pike Place Market, a sheltered area of fresh fish and produce shops, other retail stores, and restaurants. To the east and northeast of the downtown district stand First Hill and Capitol Hill, low bluffs covered by office buildings and commercial properties. Capitol Hill has many stately mansions and is a lively centre for shopping and nightlife. Beyond them are the Central District, the traditional hub of the city’s African American population, and the large residential Madrona neighbourhood, which faces Lake Washington.\n\nTo the north of Pioneer Square, downtown, and the popular neighbourhood of Belltown stands Seattle Center, the 74-acre (30-hectare) site of the 1962 World’s Fair. The centre contains the 605-foot- (184-metre-) high Space Needle, Seattle’s best-known landmark, as well as McCaw Hall (home of the Seattle Opera), Key Arena, the Children’s Museum, the Museum of Pop Culture, and other public buildings. There the high-rise downtown cityscape gives way to the pleasant urban neighbourhoods of Magnolia, which borders Puget Sound, and Queen Anne, located east-southeast of Magnolia between Lake Union, the Lake Washington Ship Canal, and Elliott Bay. South Lake Union was a relatively sleepy area until Amazon.com consolidated all of its offices there in 2010, which led to rapid growth that was partially enabled by a streetcar line that had opened in the neighbourhood in 2007.'
-  }
+    desc: 'Seattle is a city of distinct neighbourhoods and urban districts that, though close to one another, change from one street to the next. Some neighbourhoods, notably those near the Duwamish Waterway to southwest of the city centre, are industrial in character, marked by rail yards, wharves, cranes, and low-income housing projects. Others, largely outside the city centre, are showcases for the opulence wrought by Seattle’s booming high-technology sector.\n\nThe downtown district is Seattle’s commercial heart. Of particular interest to visitors is the Pike Place Market, a sheltered area of fresh fish and produce shops, other retail stores, and restaurants. To the east and northeast of the downtown district stand First Hill and Capitol Hill, low bluffs covered by office buildings and commercial properties. Capitol Hill has many stately mansions and is a lively centre for shopping and nightlife. Beyond them are the Central District, the traditional hub of the city’s African American population, and the large residential Madrona neighbourhood, which faces Lake Washington.\n\nTo the north of Pioneer Square, downtown, and the popular neighbourhood of Belltown stands Seattle Center, the 74-acre (30-hectare) site of the 1962 World’s Fair. The centre contains the 605-foot- (184-metre-) high Space Needle, Seattle’s best-known landmark, as well as McCaw Hall (home of the Seattle Opera), Key Arena, the Children’s Museum, the Museum of Pop Culture, and other public buildings. There the high-rise downtown cityscape gives way to the pleasant urban neighbourhoods of Magnolia, which borders Puget Sound, and Queen Anne, located east-southeast of Magnolia between Lake Union, the Lake Washington Ship Canal, and Elliott Bay. South Lake Union was a relatively sleepy area until Amazon.com consolidated all of its offices there in 2010, which led to rapid growth that was partially enabled by a streetcar line that had opened in the neighbourhood in 2007.',
+  },
 ];
 
 const otherToKnows = ['Jabroni, it\'s the Rock cave', 'Cabin near seattle, the getaway you need!', 'Giga Mansion of West Hollywood', 'First house on Mars - Pre-book now!!!', 'Best Crash pad for Oaklands finests', 'The only apartment in Seattles Needle. Don\'t ask.', 'We go to WeHo', 'We go to WeHo too', 'Seattles true finest', 'Across from the needle. Best view in Seattle', 'When you\'re here, you\'re here.', 'Oakland\'s only skyrise mansion', 'Cute and quant cottage on outskirts of Austin ', 'Delivered Austin BBQ is still the best BBQ in Austin', 'Bay bay for the bay', 'Sweet cozy home, heart of Austin', 'Live like a king in this king sized apartment. Oakland\'s penthouse', 'Walk to the bars, stay away from cars. 6th Street\'s popping household']
@@ -154,14 +164,14 @@ const otherToKnows = ['Jabroni, it\'s the Rock cave', 'Cabin near seattle, the g
       name: i,
       rules: {
         house: ['Check-in: 4:00 PM', 'Check-out: 11:00A AM', 'No pets', 'No smoking', 'No loud music after 2:00 AM'],
-        additional: ['No large events']
+        additional: ['No large events'],
       },
       health: {
         safety: ['Committed to Airbnb\'s enhanced cleaning process.', 'During the COVID-19 pandemic, all hosts and guests must review and follow Airbnb\'s social-distancing and other COVID-19-related guidelines.', 'Carbon monoxide alarm', 'Smoke alarm'],
-        acknowledge: ['Security Deposit - if you damage the home, you may be charged up to $500']
+        acknowledge: ['Security Deposit - if you damage the home, you may be charged up to $500'],
       },
-      cancelPolicy: ['Free cancellation for 48hrs', 'After that, cancel before 4:00pm on Feb 12 to get 50% back, minus the service fee']
-    })
+      cancelPolicy: ['Free cancellation for 48hrs', 'After that, cancel before 4:00pm on Feb 12 to get 50% back, minus the service fee'],
+    });
     return m;
   }, []);
 
@@ -170,46 +180,47 @@ const toKnow = [
     name: 'Hollywood lifeStyle of luxury! Manion for a star',
     rules: {
       house: ['Self check-in with lockbox', 'Not suitable for children and infants', 'No pets', 'No smoking', 'Only 4 visitors'],
-      additional: ['No Film Productions Without Permission', 'No jumping off the balcony into the pool', 'No loud music after 2:00 AM']
+      additional: ['No Film Productions Without Permission', 'No jumping off the balcony into the pool', 'No loud music after 2:00 AM'],
     },
     health: {
       safety: ['Committed to Airbnb\'s enhanced cleaning process.', 'During the COVID-19 pandemic, all hosts and guests must review and follow Airbnb\'s social-distancing and other COVID-19-related guidelines.', 'Carbon monoxide alarm', 'Smoke alarm'],
-      acknowledge: ['Must climb stairs - There are 5 stories. The elevator is broken, so you must climb stairs to access bedrooms, kitchen, and basketball court.', 'Security Deposit - if you damage the home, you may be charged up to $500']
+      acknowledge: ['Must climb stairs - There are 5 stories. The elevator is broken, so you must climb stairs to access bedrooms, kitchen, and basketball court.', 'Security Deposit - if you damage the home, you may be charged up to $500'],
     },
-    cancelPolicy: ['Free cancellation for 48hrs', 'After that, cancel before 4:00pm on Feb 12 to get 50% back, minus the first night and service fee']
+    cancelPolicy: ['Free cancellation for 48hrs', 'After that, cancel before 4:00pm on Feb 12 to get 50% back, minus the first night and service fee'],
   },
   {
     name: 'Model H is for house',
     rules: {
       house: ['Self check-in with lockbox', 'Check-out: 11:00 AM', 'Not suitable for children and infants', 'Parties only', 'No pets'],
-      additional: ['No Jeff Bezos']
+      additional: ['No Jeff Bezos'],
     },
     health: {
       safety: ['Committed to Airbnb\'s enhanced cleaning process.', 'During the COVID-19 pandemic, all hosts and guests must review and follow Airbnb\'s social-distancing and other COVID-19-related guidelines.', 'Carbon monoxide alarm', 'Smoke alarm'],
-      acknowledge: ['No Jeff Bezos - Do not allow Jeff Bezos on to the property', 'Security Deposit - if you damage the home, you may be charged to throw an epic party on my birthday']
+      acknowledge: ['No Jeff Bezos - Do not allow Jeff Bezos on to the property', 'Security Deposit - if you damage the home, you may be charged to throw an epic party on my birthday'],
     },
-    cancelPolicy: ['Free cancellation for 12hrs', 'After that, cancel before 12:00pm on Apr 3 to get 30% back, minus the service fee']
+    cancelPolicy: ['Free cancellation for 12hrs', 'After that, cancel before 12:00pm on Apr 3 to get 30% back, minus the service fee'],
   },
   {
     name: 'Bay for days! The best view in the Bay',
     rules: {
       house: ['Check-in: 4:00 PM - 8:00 PM', 'No smoking', 'No pets', 'No parties or events', 'No visitors'],
-      additional: ['No loud noise after 11 PM', 'No Candle/Fire Use', 'No Film Productions Without Permission']
+      additional: ['No loud noise after 11 PM', 'No Candle/Fire Use', 'No Film Productions Without Permission'],
     },
     health: {
       safety: ['Committed to Airbnb\'s enhanced cleaning process.', 'During the COVID-19 pandemic, all hosts and guests must review and follow Airbnb\'s social-distancing and other COVID-19-related guidelines.', 'Carbon monoxide alarm', 'Smoke alarm'],
-      acknowledge: ['Security Deposit - if you damage the home, you may be charged up to $125']
+      acknowledge: ['Security Deposit - if you damage the home, you may be charged up to $125'],
     },
-    cancelPolicy: ['Free cancellation from 1 week of booking', 'After that, cancel before 4:00pm on Feb 27 to get 50% back, minus the service fee']
+    cancelPolicy: ['Free cancellation from 1 week of booking', 'After that, cancel before 4:00pm on Feb 27 to get 50% back, minus the service fee'],
   },
-  ...otherToKnows
+  ...otherToKnows,
 ];
 
 const seedDB = () => {
   Hosts.create(hosts)
     .then(() => Locations.create(locations))
-    .then(() =>ToKnow.create(toKnow))
+    .then(() => ToKnow.create(toKnow))
     .then(db.disconnect);
-}
+};
 
 seedDB();
+module.exports.seedDB = seedDB;
