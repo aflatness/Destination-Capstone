@@ -17,10 +17,11 @@ app.listen(port, () => {
   console.groupEnd('server');
 });
 
-app.get('/hostInfo/:propertyName', async (req, res) => {
+app.get('/hostInfo/:name', async (req, res) => {
   try {
-    const data = await Hosts.findOne(req.params);
-    res.status(200).send(data[0]);
+    const name = req.params.name.replace(/-/g, ' ');
+    const data = await Hosts.findOne({ name }).exec();
+    res.status(200).send(data);
   } catch (err) {
     res.status(404).send(err);
   }
@@ -28,17 +29,18 @@ app.get('/hostInfo/:propertyName', async (req, res) => {
 
 app.get('/location/:city', async (req, res) => {
   try {
-    const data = Locations.findOne(req.params);
-    res.status(200).send(data[0]);
+    const data = await Locations.findOne(req.params).exec();
+    res.status(200).send(data);
   } catch (err) {
     res.status(404).send(err);
   }
 });
 
-app.get('/toKnow/:locName', async (req, res) => {
+app.get('/toKnow/:name', async (req, res) => {
   try {
-    const data = await ToKnow.findOne(req.params);
-    res.status(200).send(data[0]);
+    const name = req.params.name.replace(/-/g, ' ');
+    const data = await ToKnow.findOne({ name }).exec();
+    res.status(200).send(data);
   } catch (err) {
     res.status(404).send(err);
   }
@@ -46,7 +48,8 @@ app.get('/toKnow/:locName', async (req, res) => {
 
 app.put('/email/:id', async (req, res) => {
   try {
-    const result = await Hosts.findByIdAndUpdate(req.params.id, { $push: { messages: req.body } });
+    const result = await Hosts.findByIdAndUpdate(req.params.id, { $push: { messages: req.body } })
+      .exec();
     res.status(202).send(result);
   } catch (err) {
     res.status(404).send(err);

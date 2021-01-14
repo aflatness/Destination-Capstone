@@ -20,5 +20,8 @@ module.exports = {
     'jest',
   ],
   rules: {
+    'jsx-quotes': 'off',
+    'no-trailing-spaces': 'off',
+    'import/extensions': 'off',
   },
 };
