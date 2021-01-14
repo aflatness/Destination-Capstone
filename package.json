@@ -4,7 +4,7 @@
   "description": "Host Info and Location module",
   "main": "server.js",
   "scripts": {
-    "test": "jest Test/dbSpecRunner.test.js",
+    "test": "jest --watchAll",
     "start": "nodemon server.js",
     "watch": "webpack --mode development -w",
     "seed": "node database/seed.js"
@@ -23,11 +23,12 @@
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "chai": "^4.2.0",
+    "enzyme": "^3.11.0",
     "express": "^4.17.1",
     "moment": "^2.29.1",
     "mongoose": "^5.11.11",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
@@ -35,6 +36,7 @@
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
     "babel-loader": "^8.2.2",
+    "enzyme-adapter-react-16": "^1.15.5",
     "eslint": "^7.17.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.22.1",
@@ -47,5 +49,16 @@
     "nodemon": "^2.0.7",
     "webpack": "^5.13.0",
     "webpack-cli": "^4.3.1"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/test-setup.js"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "@babel/env",
+      "@babel/react"
+    ]
   }
 }
