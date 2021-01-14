@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Location from './Location.jsx';
+import Host from './HostInfo.jsx';
 
 class App extends React.Component {
   constructor() {
@@ -36,7 +37,10 @@ class App extends React.Component {
   render() {
     const { location, HostInfo, ToKnow } = this.state;
     return (
-      <Location location={location} />
+      <div>
+        <Location location={location} />
+        <Host host={HostInfo} />
+      </div>
     );
   }
 }

@@ -23,5 +23,6 @@ module.exports = {
     'jsx-quotes': 'off',
     'no-trailing-spaces': 'off',
     'import/extensions': 'off',
+    'react/prop-types': 'off',
   },
 };
