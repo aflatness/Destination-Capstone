@@ -33,9 +33,27 @@ hr {
   margin-top: 30px;
 }
 
+#wrapper {
+  position: relative;
+}
 #map {
-  height: 400px;
+  height: 500px;
   width: fill;
+}
+
+#loc-notice {
+  position: absolute;
+  top: 430px;
+  left: 37%;
+  height: 30px;
+  width: 280px;
+  border: 1px solid white;
+  border-radius: 10px;
+  background-color: white;
+  font-family: 'Airbnb cereal App Light';
+  font-size: 15px;
+  text-align: center;
+  padding-top: 10px;
 }
 
 button {

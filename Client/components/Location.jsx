@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import initMap from '../gMap.js';
 
 const Location = ({ location }) => {
   const [isShown, setModule] = useState(false);
@@ -11,38 +12,20 @@ const Location = ({ location }) => {
     city, state, country, desc,
   } = location;
 
-  let loc = {
-    lat: 37,
-    lng: 0,
-  };
-
-  const mapOptions = {
-    center: loc,
-    zoom: 14,
-    mapId: '3946a506a540b218'
-  };
-
   const query = `${city}, ${state}, ${country}`;
 
-  window.initMap = function () {
-    const geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ 'address': 'Austin, Texas'}, (results, status) => {
-      if (status === google.maps.GeocoderStatus.OK) {
-        loc.lat = results[0].geometry.location.lat();
-        loc.lng = results[0].geometry.location.lng();
-
-        new google.maps.Map(document.getElementById('map'), mapOptions);
-      } else {
-        console.log('error');
-      }
-    });
-  };
+  if (city) {
+    initMap(query);
+  }
 
   return (
     <div>
       <hr />
       <h2 className='loc-title'>Location</h2>
-      <div id='map'></div>
+      <div id='wrapper'>
+        <div id='map' />
+        <div id='loc-notice'>Exact location provided after booking</div>
+      </div>
       {city && (
       <div>
         <div className='loc-title'>
@@ -57,6 +40,7 @@ const Location = ({ location }) => {
       <br />
       <button type='button' onClick={showModule}>More about the location</button>
       <hr />
+      {/* TODO: Create Modal for when button is clicked to show all of map and more desc */}
     </div>
   );
 };

@@ -25,5 +25,6 @@ module.exports = {
     'import/extensions': 'off',
     'react/prop-types': 'off',
     'no-console': 'off',
+    'no-new': 'off',
   },
 };
