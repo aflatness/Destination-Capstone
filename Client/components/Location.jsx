@@ -25,6 +25,10 @@ const Location = ({ location }) => {
       <div id='wrapper'>
         <div id='map' />
         <div id='loc-notice'>Exact location provided after booking</div>
+        <div id='sel-transit'>
+          <input type='checkbox' value='Transit' />
+          <label>Public Transit</label>
+        </div>
       </div>
       {city && (
       <div>

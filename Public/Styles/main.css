@@ -41,19 +41,40 @@ hr {
   width: fill;
 }
 
-#loc-notice {
+#loc-notice, #sel-transit {
   position: absolute;
+  border: 1px solid white;
+  border-radius: 10px;
+  background-color: white;
+  padding-top: 10px;
+}
+
+#loc-notice {
   top: 430px;
   left: 37%;
   height: 30px;
   width: 280px;
-  border: 1px solid white;
-  border-radius: 10px;
-  background-color: white;
   font-family: 'Airbnb cereal App Light';
   font-size: 15px;
   text-align: center;
-  padding-top: 10px;
+}
+
+#sel-transit {
+  top: 10px;
+  left: 82%;
+  height: 27px;
+  width: 130px;
+  font-family: 'Airbnb cerea App Book';
+  font-size: 17px;
+}
+
+#sel-transit input {
+  zoom: 1.5;
+}
+
+#sel-transit:hover {
+  background-color: rgb(245, 243, 243);
+  cursor: pointer;
 }
 
 button {

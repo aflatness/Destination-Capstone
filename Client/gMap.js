@@ -12,7 +12,7 @@ function initMap(query = '') {
 
       const mapOptions = {
         center: loc,
-        zoom: 14,
+        zoom: 13,
         mapId: '154f55af6afa1600',
         fullscreenControl: false,
         mapTypeControl: false,
@@ -32,8 +32,12 @@ function initMap(query = '') {
         position: loc,
         map,
       });
-
-      // const places = new google.maps.places.Autocomplete({});
+      const transit = new google.maps.TransitLayer();
+      let transitShown = false;
+      document.getElementById('sel-transit').addEventListener('click', () => {
+        !transitShown ? transit.setMap(map) : transit.setMap(null);
+        transitShown = !transitShown;
+      });
     } else {
       console.log('error');
     }
