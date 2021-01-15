@@ -1,8 +1,11 @@
 version: 2.1
 orbs:
-  node: circleci/node@3.0.0
+  node: circleci/node@4.1.0
 jobs:
   test:
+    docker:
+        - image: circleci/node
+        - image: circlie/mongodb:4.1.9
     steps:
       - checkout
       - node/install-packages
@@ -17,9 +20,8 @@ jobs:
       - run:
           name: 'Running lint'
           command: npm run lint
-
 workflows:
-  node-tests:
+  run-tests:
     jobs:
       - lint
       - test
