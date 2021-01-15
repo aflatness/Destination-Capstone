@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Location = ({ location }) => {
   const [isShown, setModule] = useState(false);
@@ -10,13 +10,41 @@ const Location = ({ location }) => {
   const {
     city, state, country, desc,
   } = location;
-  return !location.city
-    ? <div />
-    : (
+
+  let loc = {
+    lat: 37,
+    lng: 0,
+  };
+
+  const mapOptions = {
+    center: loc,
+    zoom: 14,
+    mapId: '3946a506a540b218'
+  };
+
+  const query = `${city}, ${state}, ${country}`;
+
+  window.initMap = function () {
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ 'address': 'Austin, Texas'}, (results, status) => {
+      if (status === google.maps.GeocoderStatus.OK) {
+        loc.lat = results[0].geometry.location.lat();
+        loc.lng = results[0].geometry.location.lng();
+
+        new google.maps.Map(document.getElementById('map'), mapOptions);
+      } else {
+        console.log('error');
+      }
+    });
+  };
+
+  return (
+    <div>
+      <hr />
+      <h2 className='loc-title'>Location</h2>
+      <div id='map'></div>
+      {city && (
       <div>
-        <hr />
-        <h2 className='loc-title'>Location</h2>
-        { /* TODO: Figure out google maps API */ }
         <div className='loc-title'>
           <h4>{`${city}, ${state}, ${country}`}</h4>
         </div>
@@ -24,11 +52,13 @@ const Location = ({ location }) => {
           {desc.split(' ').slice(0, 40).join(' ')}
           ...
         </div>
-        <br />
-        <button type='button' onClick={showModule}>More about the location</button>
-        <hr />
       </div>
-    );
+      )}
+      <br />
+      <button type='button' onClick={showModule}>More about the location</button>
+      <hr />
+    </div>
+  );
 };
 
 export default Location;

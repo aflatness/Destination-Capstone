@@ -24,5 +24,6 @@ module.exports = {
     'no-trailing-spaces': 'off',
     'import/extensions': 'off',
     'react/prop-types': 'off',
+    'no-console': 'off',
   },
 };
