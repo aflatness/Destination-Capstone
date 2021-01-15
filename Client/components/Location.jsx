@@ -26,8 +26,10 @@ const Location = ({ location }) => {
         <div id='map' />
         <div id='loc-notice'>Exact location provided after booking</div>
         <div id='sel-transit'>
-          <input type='checkbox' value='Transit' />
-          <label>Public Transit</label>
+          <label htmlFor='transit'>
+            <input id='transit' type='checkbox' value='Transit' />
+            Public Transit
+          </label>
         </div>
       </div>
       {city && (
@@ -45,6 +47,7 @@ const Location = ({ location }) => {
       <button type='button' onClick={showModule}>More about the location</button>
       <hr />
       {/* TODO: Create Modal for when button is clicked to show all of map and more desc */}
+      {isShown}
     </div>
   );
 };

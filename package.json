@@ -4,10 +4,11 @@
   "description": "Host Info and Location module",
   "main": "server.js",
   "scripts": {
-    "test": "jest --watchAll",
+    "test": "jest",
     "start": "nodemon server.js",
     "watch": "webpack --mode development -w",
-    "seed": "node database/seed.js"
+    "seed": "node database/seed.js",
+    "lint": "node_modules/.bin/eslint . --ignore-path .eslintignore"
   },
   "repository": {
     "type": "git",
@@ -51,11 +52,6 @@
     "nodemon": "^2.0.7",
     "webpack": "^5.13.0",
     "webpack-cli": "^4.3.1"
-  },
-  "jest": {
-    "setupFilesAfterEnv": [
-      "<rootDir>/test-setup.js"
-    ]
   },
   "babel": {
     "presets": [

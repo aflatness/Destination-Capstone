@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-undef */
 function initMap(query = '') {
   const loc = {
@@ -26,7 +27,6 @@ function initMap(query = '') {
       };
 
       const map = new google.maps.Map(document.getElementById('map'), mapOptions);
-      google.maps.event.trigger(map, 'resize');
 
       new google.maps.Marker({
         position: loc,
@@ -34,6 +34,7 @@ function initMap(query = '') {
       });
       const transit = new google.maps.TransitLayer();
       let transitShown = false;
+
       document.getElementById('sel-transit').addEventListener('click', () => {
         !transitShown ? transit.setMap(map) : transit.setMap(null);
         transitShown = !transitShown;

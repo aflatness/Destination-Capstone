@@ -36,17 +36,21 @@ hr {
 #wrapper {
   position: relative;
 }
+
 #map {
   height: 500px;
-  width: fill;
+  max-width: none !important;
+}
+
+.gm-bundled-control div {
+  border-radius: 8px !important;
 }
 
 #loc-notice, #sel-transit {
   position: absolute;
   border: 1px solid white;
-  border-radius: 10px;
+  border-radius: 8px;
   background-color: white;
-  padding-top: 10px;
 }
 
 #loc-notice {
@@ -54,21 +58,23 @@ hr {
   left: 37%;
   height: 30px;
   width: 280px;
-  font-family: 'Airbnb cereal App Light';
-  font-size: 15px;
+  font-family: 'Airbnb cereal App Book';
+  font-size: 14px;
   text-align: center;
+  padding-top: 10px;
 }
 
 #sel-transit {
   top: 10px;
-  left: 82%;
-  height: 27px;
+  left: 80%;
+  height: 30px;
   width: 130px;
-  font-family: 'Airbnb cerea App Book';
+  font-family: 'Airbnb cerea App Medium';
   font-size: 17px;
+  padding-top: 5px;
 }
 
-#sel-transit input {
+#transit {
   zoom: 1.5;
 }
 
