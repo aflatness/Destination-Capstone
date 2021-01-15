@@ -4,8 +4,7 @@ orbs:
 jobs:
   test:
     docker:
-        - image: circleci/node
-        - image: circlie/mongodb:4.1.9
+      - image: circleci/node
     steps:
       - checkout
       - node/install-packages
