@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 const supertest = require('supertest');
 const app = require('../server.js');
-const { Hosts, db } = require('../Database');
+const { Hosts } = require('../Database');
 
 const request = supertest(app);
 
@@ -14,8 +14,6 @@ beforeAll(async (done) => {
 
 afterAll(async (done) => {
   await Hosts.findByIdAndUpdate('60020bda53702f682cd8968c', { messages: [] });
-  // request.close();
-  // db.close();
   done();
 });
 
