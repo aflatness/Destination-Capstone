@@ -3,19 +3,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { Hosts, Locations, ToKnow } = require('./Database');
 
-/* eslint-disable no-console */
-
 const app = express();
-const port = 3001;
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.listen(port, () => {
-  console.group('server');
-  console.log(`Connected to port ${port}!`);
-  console.groupEnd('server');
-});
 
 app.get('/hostInfo/:name', async (req, res) => {
   try {
@@ -55,3 +46,5 @@ app.put('/email/:id', async (req, res) => {
     res.status(404).send(err);
   }
 });
+
+module.exports = app;
