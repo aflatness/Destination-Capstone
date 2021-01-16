@@ -29,6 +29,7 @@ describe('App', () => {
   it('should have a state', (done) => {
     const wrapper = shallow(<App getData={getData} />);
     expect(wrapper.state()).toBeTruthy();
+    expect(wrapper.state().location).toMatchObject({});
     done();
   });
 });
