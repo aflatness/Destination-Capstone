@@ -5,10 +5,12 @@ jobs:
   test:
     docker:
       - image: circleci/node
-      - image: circleci/mongo:4.1.0
     steps:
       - checkout
       - node/install-packages
+      - run:
+          name: 'seed db'
+          command: npm run seed
       - run:
           name: 'Running tests'
           command: npm run test

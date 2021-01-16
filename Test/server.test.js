@@ -8,12 +8,12 @@ const request = supertest(app);
 let req;
 
 beforeAll(async (done) => {
-  await Hosts.findByIdAndUpdate('60020bda53702f682cd8968c', { messages: [] });
+
   done();
 });
 
 afterAll(async (done) => {
-  await Hosts.findByIdAndUpdate('60020bda53702f682cd8968c', { messages: [] });
+
   db.disconnect();
   done();
 });
