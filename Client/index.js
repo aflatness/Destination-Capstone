@@ -3,7 +3,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app.jsx';
+import getData from './Controller';
 
 const target = document.getElementById('root');
 
-ReactDOM.render(<App />, target);
+ReactDOM.render(<App getData={getData} />, target);
