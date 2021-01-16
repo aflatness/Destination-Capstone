@@ -7,7 +7,7 @@
     "test": "jest --detectOpenHandles --collectCoverage",
     "start": "nodemon Server/index.js",
     "watch": "webpack --mode development -w",
-    "seed": "node database/seed.js",
+    "seed": "node Database/seed.js",
     "lint": "node_modules/.bin/eslint . --ignore-path .eslintignore"
   },
   "repository": {
