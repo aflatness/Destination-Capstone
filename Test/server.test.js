@@ -19,7 +19,7 @@ afterAll(async (done) => {
 });
 
 describe('server endpoints', () => {
-  req = async (endpoint) => request.get(endpoint);
+  req = (endpoint) => request.get(endpoint);
   const name = 'Jon Lasley';
   const endpoint = name.replace(/\s/g, '-');
 
