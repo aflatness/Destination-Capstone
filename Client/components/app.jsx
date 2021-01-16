@@ -31,6 +31,9 @@ class App extends React.Component {
           HostInfo,
           ToKnow,
         });
+      })
+      .catch((err) => {
+        throw new Error(err);
       });
   }
 
@@ -40,6 +43,7 @@ class App extends React.Component {
       <div>
         <Location location={location} />
         <Host host={HostInfo} />
+        <div>{ToKnow}</div>
       </div>
     );
   }

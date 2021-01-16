@@ -14,7 +14,8 @@ beforeAll(async (done) => {
 
 afterAll(async (done) => {
   await Hosts.findByIdAndUpdate('60020bda53702f682cd8968c', { messages: [] });
-  db.disconnect(done);
+  db.disconnect();
+  done();
 });
 
 describe('server endpoints', () => {
