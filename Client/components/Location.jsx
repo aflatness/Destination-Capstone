@@ -26,20 +26,20 @@ const Location = ({ location }) => {
           <div>
             <h1>Location</h1>
             <div className='loc-title '>
-              <h4>{`${city}, ${state}, ${country}`}</h4>
+              <h6>{`${city}, ${state}, ${country}`}</h6>
             </div>
             <div>
               <div id='loc-desc'>
                 {pars.map((par) => (
                   par.length > 1
                     ? (
-                      <div>
+                      <div key={par}>
                         <h4>{par[0]}</h4>
                         <p>{par[1]}</p>
                       </div>
                     )
                     : (
-                      <div>
+                      <div key={par}>
                         <p>{par}</p>
                       </div>
                     )
@@ -65,7 +65,7 @@ const Location = ({ location }) => {
   return (
     <div>
       <hr />
-      <h2 className='loc-title'>Location</h2>
+      <h4 className='loc-title'>Location</h4>
       <div id='wrapper'>
         <div id='map' ref={maps} />
         <div id='loc-notice'>Exact location provided after booking</div>
@@ -79,7 +79,7 @@ const Location = ({ location }) => {
       {city && (
       <div>
         <div className='loc-title'>
-          <h4>{`${city}, ${state}, ${country}`}</h4>
+          <h6>{`${city}, ${state}, ${country}`}</h6>
         </div>
         <div>
           {desc.split(' ').slice(0, 40).join(' ')}
