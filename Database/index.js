@@ -2,7 +2,8 @@
 const mongoose = require('mongoose');
 const uri = 'mongodb://localhost/fec';
 
-module.exports.db = mongoose.connect(uri);
+mongoose.connect(uri);
+module.exports.db = mongoose;
 
 const locationSchema = new mongoose.Schema({
   city: String,

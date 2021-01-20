@@ -224,3 +224,7 @@ const seedDB = () => {
 
 seedDB();
 module.exports.seedDB = seedDB;
+module.exports.toKnow = toKnow;
+module.exports.hosts = hosts;
+module.exports.locations = locations;
+module.exports.db = db;
