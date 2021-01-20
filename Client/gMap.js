@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-undef */
-function initMap(query = '') {
+async function initMap(query = '') {
   const loc = {
     lat: 0,
     lng: 0,
   };
+
+  let map;
   const geocoder = new google.maps.Geocoder();
-  geocoder.geocode({ address: query }, (results, status) => {
+  await geocoder.geocode({ address: query }, (results, status) => {
     if (status === google.maps.GeocoderStatus.OK) {
       loc.lat = results[0].geometry.location.lat();
       loc.lng = results[0].geometry.location.lng();
@@ -26,7 +28,8 @@ function initMap(query = '') {
         },
       };
 
-      const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+      map = new google.maps.Map(document.getElementById('map'), mapOptions);
+      console.log('Map loaded');
 
       new google.maps.Marker({
         position: loc,
@@ -43,6 +46,7 @@ function initMap(query = '') {
       console.log('error');
     }
   });
+  return map;
 }
 
 export default initMap;

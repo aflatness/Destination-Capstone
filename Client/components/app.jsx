@@ -1,6 +1,7 @@
 import React from 'react';
 import Location from './Location.jsx';
 import Host from './HostInfo.jsx';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component {
   constructor(props) {

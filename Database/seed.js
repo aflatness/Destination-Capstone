@@ -142,7 +142,7 @@ const locations = [
     city: 'Austin',
     state: 'Texas',
     country: 'United States',
-    desc: 'As Austin grows into a world-class city, there\'s concern in some quarters that it\'s losing its weirdness. But rest assured that Austin retains it\'s many attractive features.\n\nOverall, what attracts many people to Austin are likely the same things that caught your attention: the high quality of life, low cost of living, favorable employment prospects, relatively mild climate, and active music and arts scene.\n\nNeighboorhoods: Downtown is the heart of the city, where it\'s non-stop activity day and night.\n\nCultural attractions fill visitors\' days, and nightlife, shows and concerts keep them busy all night. \n\nThe main district contains within its borders smaller neighborhoods for shopping, nightlife, eateries and galleries.',
+    desc: 'As Austin grows into a world-class city, there\'s concern in some quarters that it\'s losing its weirdness. But rest assured that Austin retains it\'s many attractive features.\n\nOverall, what attracts many people to Austin are likely the same things that caught your attention; the high quality of life, low cost of living, favorable employment prospects, relatively mild climate, and active music and arts scene.\n\nNeighboorhoods: Downtown is the heart of the city, where it\'s non-stop activity day and night.\n\nCultural attractions fill visitors\' days, and nightlife, shows and concerts keep them busy all night. \n\nThe main district contains within its borders smaller neighborhoods for shopping, nightlife, eateries and galleries.',
   },
   {
     city: 'Oakland',
