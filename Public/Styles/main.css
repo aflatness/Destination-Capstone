@@ -21,16 +21,18 @@
 
 body {
   font-family: 'Airbnb Cereal App Light';
-  margin: 10px 150px 0 150px;
+  margin: 10px 15% 0 15%;
 }
 
 hr {
   font-size: 40px;
+  border: .001em solid rgb(230, 230, 230);
 }
 
 .loc-title {
-  font-family: 'Airbnb Cereal App Book';
+  font-family: 'Airbnb Cereal App Medium';
   margin-top: 30px;
+  margin-bottom: 25px;
 }
 
 #wrapper {
@@ -55,23 +57,24 @@ hr {
 
 #loc-notice {
   top: 430px;
-  left: 37%;
-  height: 30px;
+  left: 34%;
+  height: 40px;
   width: 280px;
   font-family: 'Airbnb cereal App Book';
   font-size: 14px;
   text-align: center;
-  padding-top: 10px;
+  padding-top: 8px;
 }
 
 #sel-transit {
   top: 10px;
-  left: 80%;
+  left: 75%;
   height: 30px;
-  width: 130px;
-  font-family: 'Airbnb cerea App Medium';
+  width: 140px;
+  font-family: 'Airbnb cereal App Book';
   font-size: 17px;
   padding-top: 5px;
+  padding-left: 5px;
 }
 
 #transit {
@@ -86,13 +89,13 @@ hr {
 button {
   margin: 0 0 20px 0;
   background-color: white;
-  padding: 12px;
   border: 1px solid black;
 
   border-radius: 10px;
   font-family: 'Airbnb Cereal App Medium';
+  padding: 10px 18px 10px 18px;
   font-size: 16px;
-  outline: none;
+  outline: none !important;
 }
 
 button:hover {
@@ -101,7 +104,7 @@ button:hover {
 }
 
 #loc-overlay {
-  margin: 0 -120px 0 -120px;
+  margin: 0 -13% 0 -13%;
 }
 
 #loc-overlay button {
@@ -140,17 +143,36 @@ img {
   border-radius: 50%;
 }
 
+#host-bar-info {
+  margin-top: 20px;
+  margin-left: 15px;
+  vertical-align: -75%;
+}
+
+#host-name {
+  font-family: 'Airbnb Cereal App Medium';
+  font-size: 22px;
+}
+
+#host-join {
+  font-size: 14px;
+  color:  rgb(100, 100, 100);
+}
+
 #host-info {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-#reviews, #verified {
-  display: inline-block;
+#host-data {
+  margin-bottom: -10px;
 }
 
-#verified {
-  margin-left: 50px;
+#reviews, #verified {
+  display: inline-flex;
+  margin-left: 10px;
+  margin-right: 15px;
+  vertical-align: 23%;
 }
 
 #host-desc {
@@ -161,13 +183,18 @@ a {
   font-family: 'Airbnb cereal App Medium';
   font-size: 16px;
   color: black;
+  text-decoration: underline;
 }
 
 #host-desc a:hover {
   cursor: pointer;
+  color: black;
 }
 
-#host-contact li {
+#prot-warning {
+  margin-left: 12px;
+  display: inline-block;
   font-size: 14px;
   width: 300px;
+  vertical-align: -72%;
 }
