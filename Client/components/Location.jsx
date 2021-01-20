@@ -81,7 +81,7 @@ const Location = ({ location }) => {
         <div className='loc-title'>
           <h6>{`${city}, ${state}, ${country}`}</h6>
         </div>
-        <div>
+        <div id='desc-prev'>
           {desc.split(' ').slice(0, 40).join(' ')}
           ...
         </div>

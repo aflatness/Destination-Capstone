@@ -6,6 +6,7 @@
 import 'jsdom-global/register';
 import React from 'react';
 import axios from 'axios';
+import { Modal, Button, Form } from 'react-bootstrap';
 import { shallow, configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import App from '../Client/components/app.jsx';
@@ -100,9 +101,11 @@ describe('Basic app functionality', () => {
 });
 
 describe('Location component functionality', () => {
-  const setModule = jest.fn();
-  const useState = jest.spyOn(React, 'useState');
-  useState.mockImplementation((isShown) => [isShown, setModule]);
+  it('should only show a preview of the location', (done) => {
+    const locComp = shallow(<Location location={locations} />);
+    expect(locComp.find('#desc-prev').text().length).toBeLessThan(locations.desc.length);
+    done();
+  });
 
   it('should show the overLay when more about location is clicked', (done) => {
     const locComp = shallow(<Location location={locations} />);
@@ -121,13 +124,70 @@ describe('Location component functionality', () => {
 });
 
 describe('HostInfo component functionality', () => {
-  const hostComp = mount(<HostInfo host={hosts} />);
+  const hostComp = shallow(<HostInfo host={hosts} />);
+  const setState = jest.fn();
+  const useStateSpy = jest.spyOn(React, 'useState');
+  useStateSpy.mockImplementation((init) => [init, setState]);
+  const e = {
+    preventDefault: () => {},
+    stopPropagation: () => {},
+  };
 
-  it('should not show the modal if contact host', (done) => {
-    console.log(hostComp.find('.modal-header').length);
-    expect(hostComp.find('.modal-header').length).toBe(0);
+  it('should only show only a preview of the host description', (done) => {
+    expect(hostComp.find('#host-desc').text().length).toBeLessThan(hosts.desc.length);
     done();
   });
 
-  // TODO: write more tests tomorrow
+  it('should show the full host description when read more is clicked', (done) => {
+    hostComp.find('a').props().onClick(e);
+    expect(hostComp.find('#host-desc').text()).toBe(hosts.desc);
+    done();
+  });
+
+  describe('Contact host modal', () => {
+    it('should have a Modal ready to render onto the page', (done) => {
+      expect(hostComp.find(Modal).length).toBe(1);
+      done();
+    });
+
+    it('should not show the modal if contact host hasn\'t been clicked', (done) => {
+      expect(hostComp.find(Modal).prop('show')).toBe(false);
+      done();
+    });
+
+    it('should show the modal once contact host is clicked', (done) => {
+      hostComp.find('button').simulate('click');
+      expect(hostComp.find(Modal).prop('show')).toBe(true);
+      done();
+    });
+
+    it('should close the modal when close is clicked', (done) => {
+      expect(hostComp.find(Modal).prop('show')).toBe(true);
+      hostComp.find(Button).last().simulate('click');
+      expect(hostComp.find(Modal).prop('show')).toBe(false);
+      done();
+    });
+
+    it('should not close the modal when submit is clicked and forms aren\'t validated', (done) => {
+      e.currentTarget = {
+        checkValidity: () => false,
+      };
+      hostComp.find('button').simulate('click');
+      expect(hostComp.find(Modal).prop('show')).toBe(true);
+      hostComp.find(Form).props().onSubmit(e);
+      expect(hostComp.find(Modal).prop('show')).toBe(true);
+      done();
+    });
+
+    it('should close the modal when submit is clicked and forms are correct', async (done) => {
+      e.currentTarget = {
+        checkValidity: () => true,
+      };
+      axios.put.mockResolvedValue('');
+      hostComp.find(Form).props().onSubmit(e);
+      await new Promise(setImmediate);
+      expect(hostComp.find(Modal).prop('show')).toBe(false);
+      done();
+    });
+  });
 });

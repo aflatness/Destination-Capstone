@@ -70,7 +70,7 @@ const HostInfo = ({ host }) => {
               {`Hosted by ${name.split(' ')[0]}`}
             </h3>
             <div id='host-join'>
-              {`Joined in ${Moment(joinDate).format('MM-YYYY')}`}
+              {`Joined in ${Moment(new Date(joinDate)).format('MMMM YYYY')}`}
             </div>
           </div>
         </div>
