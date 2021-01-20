@@ -13,7 +13,7 @@ beforeAll(async (done) => {
 });
 
 afterAll(async (done) => {
-  await Hosts.findByIdAndUpdate('60020bda53702f682cd8968c', { messages: [] });
+  await db.connection.db.dropDatabase();
   db.disconnect();
   done();
 });
@@ -59,6 +59,15 @@ describe('server endpoints', () => {
       expect(res.body.messages).toHaveLength(0);
       done();
     });
+
+    it('should return the location requested', async (done) => {
+      const res = await req('/location/Austin');
+      expect(res.status).toBe(200);
+      const { city, state, country } = res.body;
+      const location = `${city}, ${state}, ${country}`;
+      expect(location).toBe('Austin, Texas, United States');
+      done();
+    });
   });
 
   describe('PUT requests', () => {
@@ -78,6 +87,13 @@ describe('server endpoints', () => {
       const obj = res.body.messages[0];
       expect(obj).toHaveProperty('message');
       expect(obj.message).toEqual(expect.any(String));
+      done();
+    });
+
+    it('should return an error if no matching id found', async (done) => {
+      const res = await request.put('/email/12345').send({ user: 'aflatness', message: 'This is from the test' });
+      expect(res.status).toBe(404);
+      expect(res.error).toEqual(expect.any(Error));
       done();
     });
   });
