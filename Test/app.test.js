@@ -110,17 +110,22 @@ describe('Location component functionality', () => {
     done();
   });
 
-  it('should show the overLay when more about location is clicked', (done) => {
+  it('should show not the Map Modal on load in', (done) => {
     const locComp = shallow(<Location location={locations} />);
-    expect(locComp.find('#loc-overlay')).toHaveLength(0);
-    locComp.find('button').simulate('click');
-    expect(locComp.find('#loc-overlay')).toHaveLength(1);
+    expect(locComp.find(Modal).prop('show')).toBe(false);
+    done();
+  });
+
+  it('should show the Map Modal when More about location is clicked', (done) => {
+    const locComp = shallow(<Location location={locations} />);
+    locComp.find('#open-loc-modal').simulate('click');
+    expect(locComp.find(Modal).prop('show')).toBe(true);
     done();
   });
 
   it('should show a detailed description about the city and areas when more about is clicked', (done) => {
     const locComp = shallow(<Location location={locations} />);
-    locComp.find('button').simulate('click');
+    locComp.find('#open-loc-modal').simulate('click');
     expect(locComp.find('#loc-desc').children().length).toBeGreaterThan(1);
     done();
   });

@@ -49,7 +49,7 @@ const Location = ({ location }) => {
       </div>
       )}
       <br />
-      <button type='button' onClick={() => setModule(true)}>More about the location</button>
+      <button id='open-loc-modal' type='button' onClick={() => setModule(true)}>More about the location</button>
       <hr />
       <Modal
         show={isShown}
@@ -60,7 +60,7 @@ const Location = ({ location }) => {
       >
         <Modal.Body>
           <div id='loc-overlay'>
-            <button type='button' onClick={() => setModule(false)}>{'<'}</button>
+            <button id='close-loc-modal' type='button' onClick={() => setModule(false)}>{'<'}</button>
             <div id='loc-info'>
               <div>
                 <h1>Location</h1>
