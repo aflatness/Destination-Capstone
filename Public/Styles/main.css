@@ -198,3 +198,58 @@ a {
   width: 300px;
   vertical-align: -72%;
 }
+
+#toKnow-title {
+  font-family: 'Airbnb Cereal App Medium';
+  font-size: 22px;
+}
+
+#toKnow-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.Know-subtitle {
+  font-family: 'Airbnb Cereal App Medium';
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.rule {
+  margin-bottom: 5px;
+}
+
+.rule svg {
+  margin-right: 10px;
+  height: 20px;
+}
+
+.rule-line {
+  display: inline-flex;
+  margin-right: 25px;
+}
+
+.rule img {
+  height: 25px;
+  width: 25px;
+  margin-right: 10px;
+}
+
+a svg {
+  display: flex;
+  margin-top: 10px;
+  vertical-align: -7px;
+}
+
+.modal-header button {
+  display: absolute;
+}
+
+.modal-title {
+  font-family: 'Airbnb Cereal App Medium';
+}
+
+#modal-subtitle {
+  font-family: 'Airbnb Cereal App Medium';
+  font-size: 18px;
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import Location from './Location.jsx';
 import Host from './HostInfo.jsx';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import Know from './ToKnow.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class App extends React.Component {
       <div>
         <Location location={location} />
         <Host host={HostInfo} />
-        {/* <div>{ToKnow}</div> */}
+        <Know toKnow={ToKnow} />
       </div>
     );
   }
