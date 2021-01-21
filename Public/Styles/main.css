@@ -48,14 +48,14 @@ hr {
   border-radius: 8px !important;
 }
 
-#loc-notice, #sel-transit {
+.loc-notice, .sel-transit {
   position: absolute;
   border: 1px solid white;
   border-radius: 8px;
   background-color: white;
 }
 
-#loc-notice {
+.loc-notice {
   top: 430px;
   left: 34%;
   height: 40px;
@@ -66,7 +66,7 @@ hr {
   padding-top: 8px;
 }
 
-#sel-transit {
+.sel-transit {
   top: 10px;
   left: 75%;
   height: 30px;
@@ -79,11 +79,29 @@ hr {
 
 #transit {
   zoom: 1.5;
+  cursor: pointer;
 }
 
-#sel-transit:hover {
+#public-transit {
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: 3px;
+  cursor: pointer;
+}
+
+.sel-transit:hover {
   background-color: rgb(245, 243, 243);
   cursor: pointer;
+}
+
+.loc-notice-modal {
+  top: 780px;
+  left: 51%;
+}
+
+.sel-transit-modal {
+  top: 78px;
+  left: 81%;
 }
 
 button {
@@ -101,10 +119,6 @@ button {
 button:hover {
   background-color: rgb(245, 243, 243);
   cursor: pointer;
-}
-
-#loc-overlay {
-  margin: 0 -13% 0 -13%;
 }
 
 #loc-overlay button {
@@ -136,7 +150,7 @@ button:hover {
   margin-right: 50px;
 }
 
-img {
+#host-img {
   height: 70px;
   width: 70px;
   border: 1px solid white;
@@ -278,4 +292,15 @@ button svg {
   margin-bottom: 15px;
   font-family: 'Airbnb Cereal App Medium';
   font-size: 18px;
+}
+
+.loc-modal {
+  width: 100vw;
+  max-width: 100vw;
+  margin-top: -1%;
+  margin-bottom: -25px;
+}
+
+.loc-modal .modal-content {
+  border-radius: 0% !important;
 }
