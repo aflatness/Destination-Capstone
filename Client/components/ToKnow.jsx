@@ -43,7 +43,7 @@ const ToKnow = ({ toKnow }) => {
           </div>
           <div>
             <div className='Know-subtitle'>Cancellation policy</div>
-            {cancelPolicy.map((line) => <div className='rule'>{line}</div>)}
+            {cancelPolicy.map((line) => <div className='rule' key={line}>{line}</div>)}
             <a href='#' onClick={(e) => openModal(e, setCancel)}>
               More details
               <ChevronRightIcon />

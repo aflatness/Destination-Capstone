@@ -12,7 +12,10 @@ import Adapter from 'enzyme-adapter-react-16';
 import App from '../Client/components/app.jsx';
 import Location from '../Client/components/Location.jsx';
 import HostInfo from '../Client/components/HostInfo.jsx';
+import ToKnow from '../Client/components/ToKnow.jsx';
 import { hosts, toKnow, locations } from './fakeData.js';
+import Rules from '../Client/components/Rules.jsx';
+import Health from '../Client/components/Health.jsx';
 
 configure({ adapter: new Adapter() });
 
@@ -47,7 +50,7 @@ describe('Basic app functionality', () => {
     wrapper = shallow(<App getData={getData} />);
     expect(wrapper.find('Location')).toHaveLength(1);
     expect(wrapper.find('HostInfo')).toHaveLength(1);
-    // expect(wrapper.find('ToKnow')).toHaveLength(1);
+    expect(wrapper.find('ToKnow')).toHaveLength(1);
     done();
   });
 
@@ -55,7 +58,7 @@ describe('Basic app functionality', () => {
     let instance;
     let location;
     let hostInfo;
-    let ToKnow;
+    let toknow;
 
     beforeEach(async (done) => {
       wrapper = shallow(<App getData={getData} />);
@@ -72,11 +75,11 @@ describe('Basic app functionality', () => {
       expect(instance.componentDidMount).toHaveBeenCalledTimes(1);
       location = instance.state.location;
       hostInfo = instance.state.HostInfo;
-      ToKnow = instance.state.ToKnow;
+      toknow = instance.state.ToKnow;
 
       expect(location).toMatchObject(locations);
       expect(hostInfo).toMatchObject(hosts);
-      expect(ToKnow).toMatchObject(toKnow);
+      expect(toknow).toMatchObject(toKnow);
       done();
     });
 
@@ -92,11 +95,11 @@ describe('Basic app functionality', () => {
       done();
     });
 
-    // it('should pass down updated toKnow to ToKnow component', (done) => {
-    //   expect(wrapper.find('ToKnow').props()).not.toBeNull();
-    //   expect(wrapper.find('ToKnow').props().toKnow).toMatchObject(toKnow);
-    //   done();
-    // });
+    it('should pass down updated toKnow to ToKnow component', (done) => {
+      expect(wrapper.find('ToKnow').props()).not.toBeNull();
+      expect(wrapper.find('ToKnow').props().toKnow).toMatchObject(toKnow);
+      done();
+    });
   });
 });
 
@@ -123,15 +126,16 @@ describe('Location component functionality', () => {
   });
 });
 
+const e = {
+  preventDefault: () => {},
+  stopPropagation: () => {},
+};
+
 describe('HostInfo component functionality', () => {
   const hostComp = shallow(<HostInfo host={hosts} />);
-  const setState = jest.fn();
-  const useStateSpy = jest.spyOn(React, 'useState');
-  useStateSpy.mockImplementation((init) => [init, setState]);
-  const e = {
-    preventDefault: () => {},
-    stopPropagation: () => {},
-  };
+  // const setState = jest.fn();
+  // const useStateSpy = jest.spyOn(React, 'useState');
+  // useStateSpy.mockImplementation((init) => [init, setState]);
 
   it('should only show only a preview of the host description', (done) => {
     expect(hostComp.find('#host-desc').text().length).toBeLessThan(hosts.desc.length);
@@ -189,5 +193,62 @@ describe('HostInfo component functionality', () => {
       expect(hostComp.find(Modal).prop('show')).toBe(false);
       done();
     });
+  });
+});
+
+describe('To Know component functionality', () => {
+  const knowComp = shallow(<ToKnow toKnow={toKnow} />);
+
+  it('should render 3 sections of things renter to know', (done) => {
+    expect(knowComp.find('#toKnow-grid').children().length).toBe(3);
+    done();
+  });
+
+  it('should render a component for the Rules section', (done) => {
+    expect(knowComp.find(Rules).length).toBe(1);
+    expect(knowComp.find(Rules).prop('rules')).toBe(toKnow.rules.house);
+    done();
+  });
+
+  it('should render a component for the Health/Safety section', (done) => {
+    expect(knowComp.find(Health).length).toBe(1);
+    expect(knowComp.find(Health).prop('health')).toBe(toKnow.health.safety);
+    done();
+  });
+
+  describe('Rules module', () => {
+    const RulesComp = shallow(<Rules rules={toKnow.rules.house} />);
+
+    it('should return then same number of child components of rules', (done) => {
+      expect(RulesComp.children().length).toBe(toKnow.rules.house.length);
+      done();
+    });
+
+    it('should render an icon and text for each rule', (done) => {
+      const firstChild = RulesComp.children().first().children();
+      expect(firstChild.length).toBe(2);
+      expect(firstChild.last().text()).toBe(toKnow.rules.house[0]);
+      done();
+    });
+  });
+
+  describe('Health module', () => {
+    const HealthComp = shallow(<Health health={toKnow.health.safety} />);
+
+    it('should return then same number of child components of safety points', (done) => {
+      expect(HealthComp.children().length).toBe(toKnow.health.safety.length);
+      done();
+    });
+
+    it('should render an icon and text for each rule', (done) => {
+      const firstChild = HealthComp.children().first().children();
+      expect(firstChild.length).toBe(2);
+      expect(firstChild.last().text()).toBe(toKnow.health.safety[0]);
+      done();
+    });
+  });
+
+  describe('Modal functionality for ToKnow Module', () => {
+    // TODO
   });
 });

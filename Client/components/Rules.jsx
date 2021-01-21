@@ -4,6 +4,7 @@ import SmokeFreeIcon from '@material-ui/icons/SmokeFree';
 import VolumeOffIcon from '@material-ui/icons/VolumeOff';
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
 import PersonAddDisabledIcon from '@material-ui/icons/PersonAddDisabled';
+import GroupIcon from '@material-ui/icons/Group';
 
 const Rules = ({ rules }) => {
   const smoke = <SmokeFreeIcon />;
@@ -14,11 +15,12 @@ const Rules = ({ rules }) => {
   const party = <img src='https://img.icons8.com/ios-glyphs/30/000000/champagne.png' alt='' />;
   const child = <RemoveShoppingCartIcon />;
   const jeff = <PersonAddDisabledIcon />;
+  const group = <GroupIcon />;
 
   const template = (icon, rule) => (
-    <div className='rule'>
+    <div className='rule' key={rule}>
       {icon}
-      {rule}
+      <div className='rule-line'>{rule}</div>
     </div>
   );
 
@@ -48,6 +50,9 @@ const Rules = ({ rules }) => {
         }
         if (/jeff/ig.test(rule)) {
           return template(jeff, rule);
+        }
+        if (/visitor/ig.test(rule)) {
+          return template(group, rule);
         }
         return <div />;
       })}

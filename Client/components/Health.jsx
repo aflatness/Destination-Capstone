@@ -9,7 +9,7 @@ const Health = ({ health }) => {
   const card = <CreditCardIcon />;
 
   const template = (icon, rule) => (
-    <div className='rule'>
+    <div className='rule' key={rule}>
       {icon}
       <div className='rule-line'>{rule}</div>
     </div>
