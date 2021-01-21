@@ -1,22 +1,26 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
+import CloseIcon from '@material-ui/icons/Close';
 import Health from './Health.jsx';
 import Rules from './Rules.jsx';
 
 const ToKnowModal = ({ whatToKnow, show, close }) => {
   let title = 'House rules';
   let subTitle = 'Additional rules';
-  let toShow = <Rules rules={whatToKnow} />;
+  let mainShow = <Rules rules={whatToKnow.house} />;
+  let subShow = <Rules rules={whatToKnow.additional} />;
 
   if (whatToKnow.safety) {
     title = 'Health & safety';
     subTitle = 'You must also acknowledge';
-    toShow = <Health health={whatToKnow} />;
+    mainShow = <Health health={whatToKnow.safety} />;
+    subShow = <Health health={whatToKnow.acknowledge} />;
   }
   if (Array.isArray(whatToKnow)) {
     title = 'Cancellation Policy';
     [subTitle] = whatToKnow;
-    toShow = '';
+    mainShow = '';
+    [, subShow] = whatToKnow;
   }
 
   return (
@@ -26,12 +30,18 @@ const ToKnowModal = ({ whatToKnow, show, close }) => {
       centered
       animation
     >
-      <Modal.Title>{title}</Modal.Title>
+      <div id='close-modal'>
+        <button type='button' onClick={close}>
+          <CloseIcon fontSize='small' />
+        </button>
+      </div>
       <Modal.Body>
-        {toShow}
+        <Modal.Title>{title}</Modal.Title>
+        {mainShow}
         <div id='modal-subtitle'>
           {subTitle}
         </div>
+        {subShow}
       </Modal.Body>
     </Modal>
   );

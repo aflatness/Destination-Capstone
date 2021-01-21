@@ -27,7 +27,7 @@ const ToKnow = ({ toKnow }) => {
         <div id='toKnow-grid'>
           <div>
             <div className='Know-subtitle'>House rules</div>
-            <Rules rules={rules} />
+            <Rules rules={rules.house} />
             <a href='#' onClick={(e) => openModal(e, setRules)}>
               Show more
               <ChevronRightIcon />
@@ -35,7 +35,7 @@ const ToKnow = ({ toKnow }) => {
           </div>
           <div>
             <div className='Know-subtitle'>{healthTitle}</div>
-            <Health health={health} />
+            <Health health={health.safety} />
             <a href='#' onClick={(e) => openModal(e, setSafety)}>
               Show more
               <ChevronRightIcon />
