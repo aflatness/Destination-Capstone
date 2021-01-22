@@ -4,7 +4,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app.jsx';
 import getData from './Controller';
+import './Styles/main.css';
 
-const target = document.getElementById('root');
+const target = document.getElementById('app3');
 
 ReactDOM.render(<App getData={getData} />, target);

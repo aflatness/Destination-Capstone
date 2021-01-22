@@ -1,12 +1,19 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const { Hosts, Locations, ToKnow } = require('./Database');
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use(cors());
+
 app.use(express.static(path.join(__dirname, 'Public')));
+
+app.get('/static', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Public', 'bundle.js'));
+});
 
 app.get('/hostInfo/:name', async (req, res) => {
   try {

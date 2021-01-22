@@ -27,9 +27,11 @@
     "body-parser": "^1.19.0",
     "bootstrap": "^4.5.3",
     "chai": "^4.2.0",
+    "cors": "^2.8.5",
     "enzyme": "^3.11.0",
     "express": "^4.17.1",
     "google-maps": "^4.3.3",
+    "http-proxy-middleware": "^1.0.6",
     "jquery": "^3.5.1",
     "moment": "^2.29.1",
     "mongoose": "^5.11.11",
@@ -40,11 +42,13 @@
   "devDependencies": {
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
+    "@babel/plugin-proposal-decorators": "^7.12.12",
     "@babel/plugin-transform-runtime": "^7.12.10",
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
     "babel-loader": "^8.2.2",
+    "css-loader": "^5.0.1",
     "enzyme-adapter-react-16": "^1.15.5",
     "eslint": "^7.17.0",
     "eslint-config-airbnb": "^18.2.1",
@@ -58,7 +62,9 @@
     "jsdom-global": "^3.0.2",
     "mocha": "^8.2.1",
     "nodemon": "^2.0.7",
+    "style-loader": "^2.0.0",
     "supertest": "^6.1.1",
+    "url-loader": "^4.1.1",
     "webpack": "^5.13.0",
     "webpack-cli": "^4.3.1"
   },
@@ -68,7 +74,19 @@
       "@babel/react"
     ],
     "plugins": [
-      "@babel/plugin-transform-runtime"
+      "@babel/plugin-transform-runtime",
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": true
+        }
+      ]
     ]
   },
   "jest": {
