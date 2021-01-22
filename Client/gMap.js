@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-undef */
-async function initMap(query = '') {
+
+const initMap = (query = 'Austin, Texas, United States') => {
+  console.log(query);
   const loc = {
     lat: 0,
     lng: 0,
@@ -8,14 +10,14 @@ async function initMap(query = '') {
 
   let map;
   const geocoder = new google.maps.Geocoder();
-  await geocoder.geocode({ address: query }, (results, status) => {
+  geocoder.geocode({ address: query }, (results, status) => {
     if (status === google.maps.GeocoderStatus.OK) {
       loc.lat = results[0].geometry.location.lat();
       loc.lng = results[0].geometry.location.lng();
 
       const mapOptions = {
         center: loc,
-        zoom: 13,
+        zoom: 12,
         mapId: '154f55af6afa1600',
         fullscreenControl: false,
         mapTypeControl: false,
@@ -38,15 +40,16 @@ async function initMap(query = '') {
       const transit = new google.maps.TransitLayer();
       let transitShown = false;
 
-      document.getElementById('sel-transit').addEventListener('click', () => {
+      document.getElementById('transit').addEventListener('click', () => {
         !transitShown ? transit.setMap(map) : transit.setMap(null);
         transitShown = !transitShown;
       });
     } else {
       console.log('error');
+      console.log(results, status);
     }
   });
   return map;
-}
+};
 
 export default initMap;

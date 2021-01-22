@@ -64,7 +64,7 @@ const HostInfo = ({ host }) => {
     : (
       <div>
         <div id='host-bar'>
-          <img src={photo} alt='' />
+          <img src={photo} alt='' id='host-img' />
           <div id='host-bar-info' style={{ display: 'inline-block' }}>
             <h3 id='host-name'>
               {`Hosted by ${name.split(' ')[0]}`}
@@ -116,7 +116,7 @@ const HostInfo = ({ host }) => {
           </div>
           <Modal
             show={showModal}
-            onHide={() => setModal(false)}
+            onHide={resetState}
             centered
             animation
           >
@@ -176,7 +176,7 @@ const HostInfo = ({ host }) => {
               </Form>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant='secondary' onClick={() => setModal(false)}>Close</Button>
+              <Button variant='secondary' onClick={resetState}>Close</Button>
             </Modal.Footer>
           </Modal>
         </div>

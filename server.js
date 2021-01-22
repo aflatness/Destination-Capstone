@@ -6,7 +6,7 @@ const { Hosts, Locations, ToKnow } = require('./Database');
 const app = express();
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'Public')));
 
 app.get('/hostInfo/:name', async (req, res) => {
   try {
