@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/newline-after-import
 const mongoose = require('mongoose');
-const uri = 'mongodb://localhost/fec';
+const uri = process.env.MONGODBURL || 'mongodb://localhost/fec';
 
 mongoose.connect(uri);
 module.exports.db = mongoose;
