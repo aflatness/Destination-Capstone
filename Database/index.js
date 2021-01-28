@@ -2,7 +2,11 @@
 const mongoose = require('mongoose');
 const uri = process.env.MONGODBURL || 'mongodb://localhost/fec';
 
-mongoose.connect(uri);
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+});
 module.exports.db = mongoose;
 
 const locationSchema = new mongoose.Schema({
