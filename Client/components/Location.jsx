@@ -1,9 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import initMap from '../gMap.js';
 
-const Location = ({ location }) => {
+const Location = () => {
   const [isShown, setModule] = useState(false);
+  const [location, setLocation] = useState({});
+  const { house } = useParams();
+
+  useEffect(() => {
+    axios.get(`http://localhost:3001/location/${house}`)
+      .then(({ data }) => {
+        setLocation(data);
+      })
+      .catch((err) => console.log(err));
+  }, [house]);
 
   const {
     city, state, country, desc,
@@ -16,7 +28,7 @@ const Location = ({ location }) => {
       console.log(query);
       initMap(query);
     }
-  }, [isShown, location]);
+  }, [isShown, city]);
 
   let pars = [];
   if (desc) {

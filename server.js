@@ -15,19 +15,20 @@ app.get('/static', (req, res) => {
   res.sendFile(path.join(__dirname, 'Public', 'bundle.js'));
 });
 
-app.get('/hostInfo/:name', async (req, res) => {
+app.get('/hostInfo/:house', async (req, res) => {
   try {
-    const name = req.params.name.replace(/-/g, ' ');
-    const data = await Hosts.findOne({ name }).exec();
+    const house = req.params.house.replace(/-/g, ' ');
+    const data = await Hosts.findOne({ properties: house }).exec();
     res.status(200).send(data);
   } catch (err) {
     res.status(404).send(err);
   }
 });
 
-app.get('/location/:city', async (req, res) => {
+app.get('/location/:house', async (req, res) => {
   try {
-    const data = await Locations.findOne(req.params).exec();
+    const house = req.params.house.replace(/-/g, ' ');
+    const data = await Locations.findOne({ properties: house }).exec();
     res.status(200).send(data);
   } catch (err) {
     res.status(404).send(err);

@@ -20,7 +20,7 @@ afterAll(async (done) => {
 
 describe('server endpoints', () => {
   req = (endpoint) => request.get(endpoint);
-  const name = 'Jon Lasley';
+  const name = 'Bay bay for the bay';
   const endpoint = name.replace(/\s/g, '-');
 
   describe('GET requests', () => {
@@ -41,7 +41,7 @@ describe('server endpoints', () => {
     test('should return specific data', async (done) => {
       const res = await req(`/hostInfo/${endpoint}`);
       expect(res.body).not.toBeNull();
-      expect(res.body.name).toBe(name);
+      expect(res.body.name).toBe('Jon Lasley');
       done();
     });
 
@@ -54,18 +54,18 @@ describe('server endpoints', () => {
     });
 
     test('should check for a user with no messages', async (done) => {
-      const res = await req('/hostInfo/Elon-Musk');
+      const res = await req(`/hostInfo/${endpoint}`);
       expect(res.body).toHaveProperty('messages');
       expect(res.body.messages).toHaveLength(0);
       done();
     });
 
     it('should return the location requested', async (done) => {
-      const res = await req('/location/Austin');
+      const res = await req(`/location/${endpoint}`);
       expect(res.status).toBe(200);
       const { city, state, country } = res.body;
       const location = `${city}, ${state}, ${country}`;
-      expect(location).toBe('Austin, Texas, United States');
+      expect(location).toBe('Oakland, California, United States');
       done();
     });
   });

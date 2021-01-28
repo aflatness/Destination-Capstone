@@ -14,6 +14,7 @@ const locationSchema = new mongoose.Schema({
   state: String,
   country: String,
   desc: String,
+  properties: [String],
 });
 
 const hostSchema = new mongoose.Schema({

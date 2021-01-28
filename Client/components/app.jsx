@@ -1,4 +1,5 @@
 import React from 'react';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 import Location from './Location.jsx';
 import Host from './HostInfo.jsx';
 import Know from './ToKnow.jsx';
@@ -33,11 +34,17 @@ class App extends React.Component {
     // eslint-disable-next-line no-unused-vars
     const { location, HostInfo, ToKnow } = this.state;
     return (
-      <div>
-        <Location location={location} />
-        <Host host={HostInfo} />
-        <Know toKnow={ToKnow} />
-      </div>
+      <HashRouter>
+        <Switch>
+          <Route path='/listing/:house'>
+            <div>
+              <Location />
+              <Host />
+              <Know />
+            </div>
+          </Route>
+        </Switch>
+      </HashRouter>
     );
   }
 }
