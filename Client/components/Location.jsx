@@ -7,15 +7,15 @@ import initMap from '../gMap.js';
 const Location = () => {
   const [isShown, setModule] = useState(false);
   const [location, setLocation] = useState({});
-  const { house } = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/location/${house}`)
+    axios.get(`http://localhost:3001/location/${id}`)
       .then(({ data }) => {
         setLocation(data);
       })
       .catch((err) => console.log(err));
-  }, [house]);
+  }, [id]);
 
   const {
     city, state, country, desc,

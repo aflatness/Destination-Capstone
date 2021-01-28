@@ -36,7 +36,7 @@ class App extends React.Component {
     return (
       <HashRouter>
         <Switch>
-          <Route path='/listing/:house'>
+          <Route path='/listing/:id'>
             <div>
               <Location />
               <Host />

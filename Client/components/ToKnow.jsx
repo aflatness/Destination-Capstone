@@ -13,10 +13,10 @@ const ToKnow = () => {
   const [showCancel, setCancel] = useState(false);
 
   const [toKnow, setToKnow] = useState({});
-  const { house } = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/toKnow/${house}`)
+    axios.get(`http://localhost:3001/toKnow/${id}`)
       .then(({ data }) => {
         setToKnow(data);
       })

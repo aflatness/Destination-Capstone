@@ -19,10 +19,10 @@ const HostInfo = () => {
   const [valid, setValid] = useState('');
 
   const [host, setHost] = useState({});
-  const { house } = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/hostInfo/${house}`)
+    axios.get(`http://localhost:3001/hostInfo/${id}`)
       .then(({ data }) => {
         setHost(data);
       })

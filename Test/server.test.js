@@ -20,8 +20,7 @@ afterAll(async (done) => {
 
 describe('server endpoints', () => {
   req = (endpoint) => request.get(endpoint);
-  const name = 'Bay bay for the bay';
-  const endpoint = name.replace(/\s/g, '-');
+  const endpoint = 15;
 
   describe('GET requests', () => {
     test('should return an OK status code with proper endpoint', async (done) => {
@@ -46,7 +45,7 @@ describe('server endpoints', () => {
     });
 
     test('should return nested properties', async (done) => {
-      const res = await req('/toKnow/Model-H-is-for-house');
+      const res = await req(`/toKnow/${endpoint}`);
       expect(res.body).not.toBeNull();
       expect(res.body).toHaveProperty('health');
       expect(res.body.health).toHaveProperty('safety');
@@ -65,7 +64,7 @@ describe('server endpoints', () => {
       expect(res.status).toBe(200);
       const { city, state, country } = res.body;
       const location = `${city}, ${state}, ${country}`;
-      expect(location).toBe('Oakland, California, United States');
+      expect(location).toBe('Austin, Texas, United States');
       done();
     });
   });
