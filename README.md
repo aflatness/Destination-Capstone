@@ -1,3 +1,9 @@
+#### Destination Capstone
+
+## Live preview:
+
+https://fakeair-bnb.herokuapp.com
+
 This is the repo for the Host Info and location modules.
 
 To start, run
