@@ -1,6 +1,6 @@
-#### Destination Capstone
+## Destination Capstone
 
-## Live preview:
+#### Live preview:
 
 https://fakeair-bnb.herokuapp.com
 
